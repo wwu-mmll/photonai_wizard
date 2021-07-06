@@ -1,0 +1,8 @@
+     {% for item in selection_items %}
+               {% if item.input_type == "selection_box" %}
+                    {% include 'general/select_box.html' %}
+               {% elif item.input_type == "textfield" %}
+                    {% include 'general/textbox.html' %}
+               {% endif %}
+     {% endfor %}
+

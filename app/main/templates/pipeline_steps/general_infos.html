@@ -1,0 +1,22 @@
+<!-- -*- mode: jinja2 -*- -->
+{% extends 'wizard_step_base.html' %}
+
+{% block step_title %}
+    <h2>Step 1</h2>
+    <h1>General Infos</h1>
+{% endblock %}
+
+{% block step_description %}
+    <p>
+        Please define the name of your analysis and provide a short project description. Then choose what type of data you
+        want to use in your analysis. This can either be a simple data table (Excel) that contains your targets and
+        features as numerical values (Tabular Data) or a data table (Excel) that contains your targets as numerical
+        values and your features as paths to an MRI nifti image (MRI Data). Please then specify the number of samples and
+        whether you want to run a regression or classification task.
+    </p>
+{% endblock %}
+
+
+{% block formular_content %}
+    {% include 'general/render_selections.html' %}
+{% endblock %}

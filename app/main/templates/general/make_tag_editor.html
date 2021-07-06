@@ -1,0 +1,33 @@
+{% macro make_tag_box(fieldset_id, possible_values, default_value, multi_select) %}
+    {% if multi_select == False %}
+        {% set it = '["' + default_value | safe + '"]' %}
+    {% else %}
+        {% if default_value %}
+            {% set it = default_value | safe %}
+        {% else %}
+            {% set it = "['all']" %}
+        {% endif %}
+    {% endif %}
+    <script>
+        // $( document ).ready(function() {
+
+            // alert("{{fieldset_id}}");
+
+
+           $('#input_{{fieldset_id}}').tagEditor({
+               initialTags: {{it | safe}},
+                autocomplete: {
+                    delay: 0,
+                    position: { collision: 'flip' },
+                    source: {{ possible_values|safe }}
+                },
+                forceLowercase: false,
+                removeDuplicates: true,
+                placeholder: '...',
+            {% if multi_select == False %}maxTags: 1{% endif %}
+                });
+
+        // });
+    </script>
+
+{% endmacro %}

@@ -1,0 +1,123 @@
+
+{% extends 'base.html' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/spinkit.css') }}">
+
+
+    <script type="text/javascript">
+
+        var textID = '';
+
+        function fetchdata(){
+            $.ajax({
+              url: '/fetch_permutation_status/{{pipe_id}}/{{permutation_id}}',
+              method: 'get',
+              success: function(response){
+
+                  $('#load_values').hide();
+                  console.log(response);
+                  for (var key in response){
+                      var response_value = response[key];
+                      if (key.match("^pipe")) {
+                          $("#" + key).html(response_value);
+                      }
+                  }
+                  // var plot_items = $.parseHTML(response["plot_html"]);
+                  // $('#plot_grid').html(plot_items);
+                  $('#plot_grid').html(response["plot_html"]);
+                  var status = response["status"];
+                  $(".status_label").hide();
+                  $("#" + status).show();
+                  if(status == "SUCCESS" || status =="FAILURE" || status == "REVOKED") {
+                      $('#restart_permutation').show();
+                      $('#stop_permutation').hide();
+                      clearInterval(textID);
+                  }else{
+                      $('#restart_permutation').hide();
+                      $('#stop_permutation').show();
+                  }
+
+                  $('#info_bar').show()
+              }
+             });
+        }
+
+        $(document).ready(function(){
+            $('#restart_permutation').hide();
+            $('#stop_permutation').hide();
+            $('#info_bar').hide();
+            $(".status_label").hide();
+            fetchdata();
+            // textID = setInterval(fetchdata, 10 * 1000);
+            // clearInterval(textID);
+        });
+
+
+
+
+
+
+    </script>
+
+
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<div uk-grid class="perm-progress">
+
+    <div class="uk-width-1-6@m"></div>
+    <div class="uk-width-2-3@m">
+        <h2>Permutation Test Results</h2>
+        <p id="info_bar">
+            Analysis:
+            <span id="pipe_name"></span>
+            &nbsp;Progress:
+            <span id="pipe_n_done"></span>
+            /
+            <span id="pipe_n_todo"></span>
+            &nbsp;Time Left:
+            <span id="pipe_time_left"></span>
+            &nbsp;
+            <span id="statusDiv">
+                <span id="SUCCESS" class="uk-label uk-label-success status_label" >SUCCESS</span>
+                <span id="STARTED" class="uk-label uk-label-warning status_label" >RUNNING</span>
+                <span id="FAILURE" class="uk-label uk-label-danger status_label" >ERROR</span>
+
+                <span id="RECEIVED" class="uk-label uk-label-default status_label" >RECEIVED</span>
+                <span id="PENDING" class="uk-label uk-label-default status_label" >PENDING</span>
+                <span id="REVOKED" class="uk-label uk-label-default status_label" >CANCELLED</span>
+
+            </span>
+
+            <a id="restart_permutation" href="{{url_for('restart_permutation_test', pipe_id=pipe_id)}}">
+                <span uk-icon="icon: play-circle"></span></a>
+            <a id="stop_permutation" href="{{ url_for('cancel_permutation', pipe_id=pipe_id)}}" >
+                <span uk-icon="icon: close"></span></a>
+<!--            <a onclick="location.reload();"><span uk-icon="icon: refresh"></span></a>-->
+            <br>
+            p_values: <span id="pipe_p"></span>
+         </p>
+<!--        <progress id="pipe_progressbar" class="uk-progress" value="" max=""></progress>-->
+
+
+        <div id="plot_grid" uk-grid>
+
+
+
+        </div>
+        <div id="load_values">
+            <div class="sk-three-bounce">
+                        <div class="sk-child sk-bounce1"></div>
+                        <div class="sk-child sk-bounce2"></div>
+                        <div class="sk-child sk-bounce3"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,95 @@
+<!-- -*- mode: jinja2 -*- -->
+{% extends 'base.html' %}
+
+{% block stylesheets %}
+
+    <link href="/static/css/jquery.tag-editor.css" rel="stylesheet" media="screen">
+    <script src="/static/js/jquery.caret.min.js" type="text/javascript"></script>
+    <script src="/static/js/jquery.tag-editor.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+    {% if step_name == "setup" %}
+        var setTimer = false;
+    {% else %}
+        var setTimer = true;
+    {% endif %}
+        var stepName = '{{step_name}}';
+    </script>
+    <script src="static/js/wizard_clicks.js" type="text/javascript"></script>
+
+{% endblock %}
+
+
+{% block content %}
+
+    <div uk-grid id="wizard_step_base_container">
+        <div class="uk-width-1-6@m uk-width-1-5@s">
+            <div class="sticky_container" uk-sticky="offset: 75; bottom: #wizard_step_base_container">
+
+                <h3 class="pipe_name">
+                    {{pipe_name}}
+                </h3>
+                <ul class="side_navi uk-nav">
+
+
+
+                    <li class="{{active_steps[0]}}"><a href="#"><span>Step 1</span> Analysis Setup</a></li>
+<!--                    <li class="{{active_steps[1]}}"><a href="#"><span>Step 2</span> Choose Pipeline</a></li>-->
+                    <li class="{{active_steps[2]}}"><a href="#"><span>Step 2</span> Optimization </a></li>
+                    <li class="{{active_steps[3]}}"><a href="#"><span>Step 3</span> Performance</a></li>
+                    <li class="{{active_steps[4]}}"><a href="#"><span>Step 4</span> Transformers</a></li>
+                    <li class="{{active_steps[5]}}"><a href="#"><span>Step 5</span> Estimators</a></li>
+                    <li class="{{active_steps[6]}}"><a href="#"><span>Step 6</span> Project </a></li>
+                    <li class="{{active_steps[7]}}"><a href="#"><span>Step 7</span> Data </a></li>
+
+                </ul>
+
+                <div class="uk-clearfix form_buttons">
+                    <button id="photon_prev_button"  type="submit" name="action" value="previous"
+                            class="uk-button uk-button-primary button-smaller-margin" form="photon_step_form">Prev</button>
+                    <button id="photon_next_button" type="submit" name="action" value="next"
+                            class="uk-button uk-button-primary button-smaller-margin" form="photon_step_form">Next</button>
+                </div>
+
+            </div>
+        </div>
+
+        <! -- END MENU -->
+        <div class="uk-width-2-3@m uk-width-4-5@s uk-width-1-2@xl">
+                <div class="formular_space uk-margin-large-top" >
+                    {% if enable_multipart_form_data %}
+                        <form class="form" method="POST" enctype="multipart/form-data" id="photon_step_form">
+                    {% else %}
+                        <form class="form" method="POST" id="photon_step_form">
+
+                    {% endif %}
+                            {% if photon_code %}
+                                <input type="hidden" id="photon_code_input" name="photon_code" value="{{photon_code}}">
+                            {% endif %}
+                        {% block formular_content %}
+                        {% endblock %}
+
+                    </form>
+                </div>
+        </div>
+         <div class="uk-width-1-3@m uk-width-1-5@s">
+<!--                     <h3>PHOTON SYNTAX</h3>-->
+                {% if photon_code %}
+                    <pre id="python-syntax-pre" data-line="">
+                        <code id="photon_code" class="language-python">
+                            {{photon_code}}
+                        </code>
+                    </pre>
+                 {% endif %}
+<!--                    <a class="uk-button purple-font-->
+<!--                     uk-margin-medium-top" id="photon_syntax_btn" uk-toggle="target: #offcanvas-usage">PHOTON Syntax</a>-->
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}
+
+

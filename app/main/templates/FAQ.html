@@ -1,0 +1,165 @@
+<!-- -*- mode: jinja2 -*- -->
+{% extends 'base.html' %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block content %}
+<div class="uk-container faq">
+<div uk-grid>
+    <div class="uk-width-3-5 uk-align-center">
+        <h1>Frequently Asked Questions</h1>
+        <ul uk-accordion>
+            <li>
+                <a class="uk-accordion-title" href="#">
+                    Mein Projekt steht auf "Pending". Was heißt das?
+                </a>
+                <div class="uk-accordion-content">
+                    <p>Nachdem Ihr eine Analyse erstellt und auf "run" geklickt habt,
+                        wird sie unserer Job Queue hinzugefügt. Auf der Seite "Worker" könnt Ihr sehen,
+                        wie viele andere Jobs vor Euch an der Reihe sind.</p>
+                    <p>
+                        Falls die Analyse nicht dort gelistet ist, wird sie noch vom Scheduler verarbeitet werden und in
+                        einigen Momenten sichtbar sein. 
+                    </p>
+                </div>
+            </li>
+            <li>
+                <a class="uk-accordion-title" href="#">
+                    Wie kann ich einen Permutationstest starten?
+                </a>
+                <div class="uk-accordion-content">
+                    <p>Nachdem Eure Analyse erfolgreich durchgelaufen ist, erscheint ein Symbol
+                        auf der rechten Seite eurer Analyse unter My Projects. Wenn Ihr auf dieses Symbol klickt,
+                        könnte Ihr einen Permutationstest starten.</p>
+                </div>
+            </li>
+            <li>
+                <a class="uk-accordion-title" href="#">
+                    Gibt es irgendwo Beispieldatensätze?
+                </a>
+                <div class="uk-accordion-content">
+                    <p>Unter "/spm-data/Scratch/wizard/examples" findet Ihr Beispieldateien, mit denen Ihr
+                        ein Regressions- und Klassifikationsbeispiel für Excel- und Neurodaten rechnen könnt.</p>
+                    <ul class="uk-list uk-margin-remove-top">
+                        <li><b>Breast Cancer</b><br> Classification. File: "breast_cancer_data.xlsx", Features: "2:31", Targets: "1"</li>
+                        <li><b>Boston Housing:</b><br>Regression. File: "boston_data.xlsx", Features: "1:13", Targets: "13"</li>
+                        <li><b>PAC 2019 Brain Age:</b><br>Regression. File: "neuro_PAC2019.xlsx", Features: "4", Targets: "1"</li>
+                        <li><b>PAC 2019 Brain Gender:</b><br>Classification. File: "neuro_PAC2019.xlsx", Features: "4", Targets: "2"</li>
+                        <li><b>FOR2107 Freesurfer Gender:</b><br>Classification. File: "freesurfer_FOR2107.xlsx", Features: "7:173", Targets: "4"</li>
+                        <li><b>FOR2107 Freesurfer Gender GroupSplit:</b><br>Classification. File: "freesurfer_FOR2107.xlsx", Features: "7:173", Groups: "2", Targets: "4"</li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a class="uk-accordion-title" href="#">
+                    Meine Analyse ist abgebrochen. Was kann ich tun?
+                </a>
+                <div class="uk-accordion-content">
+                    Zunächst solltest Du einmal auf der Fortschrittsseite nachschauen, welche Fehlermeldung
+                    produziert wurde. Falls das nicht weiterhilft, melde Dich gerne bei uns.
+                </div>
+            </li>
+            <li>
+                <a class="uk-accordion-title" href="#">
+                    Hyperparameter, oder wie nutze ich FloatRange und IntegerRange?
+                </a>
+                <div class="uk-accordion-content">
+                    <p>
+                        Unsere Hypderparameterdefinitionen können genutzt werden um einen bestimmten Wertebereich zu
+                        definieren, in dem der Wert liegen soll und wie die Verteilung aussehen soll.
+
+                        "Float" meint hierbei eine
+                        Fließkommazahl,. "Integer" hingegen sind ganzzahlige Werte.
+                        Zu beachten ist die folgende Syntax:
+                    </p>
+
+                    <ul>
+                        <li>
+                            <b>Fließkommazahlen: Float</b>
+                             sprich Werte aus dem reellen Zahlenraum
+                            <code> FloatRange(start, stop, step, num, range_type='linspace')</code>
+                        </li>
+                        <li>
+                            <b>Ganzzahlen: Integer</b>
+                             sprich ganzzahlige Werte
+                            <code>
+                                IntegerRange(start, stop, step, num, range_type='linspace') und
+                            </code>
+                        </li>
+                        <li>
+                            <b>Verteilung: range_type</b>
+                              <p>
+                                Mit dem sogenannten range_type kannst Du einstellen, wie Werte aus dem definierten Bereich gezogen
+                                werden.
+                               Wenn Scikit-Optimize verwendet wird, wird der range_type in einen Prior für den jeweiligen
+                                  Hyperparameter umgewandelt und von Scikit-Optimize für die Optimierung verwendet.
+                            </p>
+                            <p>
+                                <b>"linspace"</b> erzeugt
+                                immer den gleichen Abstand zwischen den Werten (z.B. 1, 2, 3, 4, 5).<br>
+                                <b><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.logspace.html"
+                                      target="_blank">"logspace"</a></b> logarithmiert die angegebenen Werte (z.B. wird 1, 2, 3, 4 zu log(n))<br>
+                                <b>"geomspace"</b> zwischen 1 und 10000 mit 4 Schritten wird zu [1, 10 , 100, 1000]
+                            </p>
+                        </li>
+                    </ul>
+
+
+
+                </div>
+            </li>
+            <li>
+                <a class="uk-accordion-title" href="#">
+                    Irgendwas ist seltsam, meine Daten werden komisch eingelesen.
+                </a>
+                <div class="uk-accordion-content">
+                    <p>
+                        Prüfe ob deine Daten alle gleichmäßig mit Komma bzw. Punkt als Dezimaltrenner getrennt wurden
+                        oder ob sie als Zeichenkette in der Excel Tabelle stehen und ggf. ein Leerzeichen am Ende haben.
+                        Dies würde dazu führen dass Zahlen nicht als Zahlen interpretiert werden können.
+                    </p>
+                </div>
+            </li>
+            <li>
+                <a class="uk-accordion-title" href="#">
+                    Wieso sehe ich meine Änderungen an meinem Excelfile nicht?
+                </a>
+                <div class="uk-accordion-content">
+                    <p>
+                        Um für den Berechnungsserver verfügbar zu sein, wird deine Datei in deinen Projektordner kopiert.
+                        Änderungen musst du direkt dort vornehmen oder die Datei neu hochladen.
+                    </p>
+                </div>
+            </li>
+             <li>
+                <a class="uk-accordion-title" href="#">
+                    Was mache ich wenn ich einen Fehler finde?
+                </a>
+                <div class="uk-accordion-content">
+                    <p>
+                        Als erstes kategorisierst du ihn in drei Fehlerquellen: <br>
+                        <b>1. Der Wizard</b> = die Weboberfläche macht komische Sachen <br>
+                        <b>2. Die Infrastruktur</b> = der Wizard sagt die ganze Zeit er kann die Server/MongoDB nicht erreichen
+                        oder der Wizard selber ist nicht mehr erreichbar<br>
+                        <b>3. PHOTONAI</b> = die Berechnung funktioniert nicht <br>
+                    </p>
+                    <p>
+                        Diese Info kombinierst du mit den anderen Eckdaten deiner Analyse. Bitte schicke uns genau deinen
+                        Wizard Ordner mit dem Projekt, mit dem Code, die Fehlermeldung und vor allem <b>GANZ GENAU WAS DU
+                        WO GEKLICKT HAST als es aufgetreten ist</b>.
+                    </p>
+                    <p>
+                        Entweder du schreibst uns bei Slack:<br>
+                        <b>translap.slack.com im Channel #photon-wizard-feedback</b><br>
+                        Oder du kommst <b>Freitags zwischen 13 und 15 Uhr</b> zu Ramona und Nils ins Büro.
+
+                    </p>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+    </div>
+</div>
+{% endblock %}

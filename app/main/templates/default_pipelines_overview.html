@@ -1,0 +1,84 @@
+<!-- -*- mode: jinja2 -*- -->
+{% extends 'base.html' %}
+
+{% block stylesheets %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        //Filter News
+        var selected_data_type = '';
+        var selected_analysis_type = '';
+        $('button.data-type-selector').click(function () {
+            $(".data-type-selector").css("background", "#666");
+            $(this).css("background", "#2388fe");
+            var filter = $(this).attr('data-type');
+            selected_data_type = filter;
+            filterList();
+        });
+        $('button.analysis-type-selector').click(function () {
+            $(".analysis-type-selector").css("background", "#666");
+            $(this).css("background", "#2388fe");
+            var filter = $(this).attr('analysis-type');
+            selected_analysis_type = filter;
+            filterList();
+        });
+
+        //News filter function
+        function filterList() {
+            var list = $(".default-pipe-list .default-pipeline-card");
+            $(list).fadeOut("fast");
+
+            var list_output = $(".default-pipe-list").find("div");
+            if(selected_data_type != '')
+            {
+                list_output = list_output.filter("div[data-type*='"+ selected_data_type +"']");
+            }
+            if(selected_analysis_type != '')
+            {
+                list_output = list_output.filter("div[analysis-type*='" + selected_analysis_type + "']")
+            }
+
+            list_output.each(function (i) {
+                $(this).delay(200).slideToggle("slow");
+            });
+
+        }
+    });
+</script>
+{% endblock %}
+
+{% block content %}
+{% from "general/render_pipeline_element_table.html" import render_default_pipe_card %}
+    <div uk-grid>
+        <div class="uk-width-1-6@m">
+            <div class="default-pipeline-filter-buttons uk-margin-left">
+                <img src="/static/img/wizard.png"  class="uk-align-center" />
+                <h2>PHOTONAI Wizard</h2>
+                <h4>Data Type</h4>
+                <button class="uk-button uk-button-default data-type-selector" data-type="Tabular Data">Tabular Data</button>
+                <button class="uk-button uk-button-default data-type-selector" data-type="Nifti Data">Nifti Data </button>
+                <h4>Analysis Type</h4>
+                <button class="uk-button uk-button-default analysis-type-selector" analysis-type="Classification">Classification</button>
+                <button class="uk-button uk-button-default analysis-type-selector" analysis-type="Regression">Regression</button>
+            </div>
+        </div>
+        <div class="uk-width-5-6@m default-pipeline-grid">
+                <h4 class="uk-margin-medium-top">Design your own pipeline...</h4>
+                <a class="uk-button uk-button-primary uk-button-large custom-pipe-button"
+                    href="{{url_for('new_pipeline')}}">
+<!--                     <img class="uk-border-circle uk-margin-small-right" width="40" src="/static/img/wizard.png"  />-->
+                     New Custom Pipeline</a>
+
+            <h4 class="uk-margin-large-top">...or choose a default pipeline</h4>
+            <div class="default-pipe-list uk-margin-large-right uk-margin-large-bottom">
+               <div uk-grid>
+                        {% for default_pipe in default_pipe_list %}
+                            {{render_default_pipe_card(default_pipe, True)}}
+                        {% endfor %}
+                   </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

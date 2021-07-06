@@ -1,0 +1,151 @@
+<!-- -*- mode: jinja2 -*- -->
+{% extends 'base.html' %}
+
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/spinkit.css') }}">
+
+<script type="text/javascript">
+    $( document ).ready(function() {
+        $('#load_values').hide();
+
+
+        $('#btn_run_perms').click(function( event ) {
+            $('#load_values').show();
+            $('#my-flashy-permutation-modal').redraw();
+            $('#run_permutations').submit();
+        });
+
+        $('.delete_pipe').click(function (event) {
+            var delete_link = this.getAttribute("delete-url");
+            $('#delete_link').attr('href', delete_link)
+            UIkit.modal('#my-flashy-delete-modal').show();
+        });
+         $('.cancel_computation').click(function (event) {
+            var delete_link = this.getAttribute("delete-url");
+            $('#stop_link').attr('href', delete_link)
+            UIkit.modal('#my-flashy-stop-modal').show();
+        });
+        $('.run_permutations').click(function (event) {
+            var perm_link = this.getAttribute("perm-url");
+            $('#run_permutations').attr('action', perm_link)
+            UIkit.modal('#my-flashy-permutation-modal').show();
+        });
+    });
+</script>
+{% endblock %}
+
+{% block content %}
+     <div id="my-flashy-delete-modal" uk-modal>
+            <div class="uk-modal-dialog uk-modal-body">
+                 <h2 class="uk-modal-title">PHOTONAI Wizard</h2>
+                 <img src="/static/img/wizard.png" class="uk-align-left" />
+                 <p> If you delete this pipe, the complete project, including the folder, all containing files
+                    and all results in any databases are deleted as well.<br>
+                    Good Luck, you guys!</p>
+                <a id="delete_link" href="" class="uk-button uk-button-danger">Delete</a>
+                <a class="uk-modal-close uk-button uk-button-primary" type="button">Cancel</a>
+            </div>
+        </div>
+
+    {% include ('general/stop_computation_modal.html') %}
+
+    {% include ('general/permutation_test.html') %}
+
+
+    <div uk-grid class="project-history">
+        <div class="uk-width-1-6@m">
+             <a class="uk-button uk-button-primary uk-button-large uk-margin-medium-top "
+                href="{{url_for('default_pipeline_list')}}">
+                 <img class="uk-border-circle uk-margin-small-right" width="40" src="/static/img/wizard.png"  />
+                 New Project</a>
+        </div>
+        <div class="uk-width-5-6@m model_history">
+<!--            <h3>Project History</h3>-->
+            <table class="uk-table uk-table-striped uk-margin-bottom uk-margin-top uk-margin-right">
+                <thead>
+                    <tr>
+                        <th>Project Name</th>
+                        <th>Date Of Creation</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                        <th>Computation</th>
+                        <th>Permutation Test</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                {% for pipe in pipes %}
+                    <tr>
+                        <td>
+                            <a href="{{ url_for('load_pipeline', pipe_id=pipe._id)}}">{{ pipe.name}}</a>
+                        </td>
+                        <td>
+                            {{pipe.creation_time_str}}
+                        </td>
+                         <td>
+                            {{pipe.description}}
+                        </td>
+
+                        <td>
+                            {% set celery_status = pipe.celery_status %}
+                            {% include ('general/render_pipe_running_state.html') %}
+                        </td>
+
+                        <td>
+                            <!--{% if pipe.collected_all_information %}-->
+                                <!--<a href="{{url_for('rerun_photon', pipe_id=pipe._id)}}" uk-icon="icon: refresh"></a>-->
+                            <!--{% endif %}-->
+
+                            <a href="{{url_for('load_pipeline', pipe_id=pipe._id)}}" uk-icon="icon: file-edit" ></a>
+                            <a href="{{url_for('copy_pipe', pipe_id=pipe._id)}}"
+                                   uk-tooltip="Copy Pipeline">
+                                    <span uk-icon="icon: copy"></span>
+                            </a>
+                            <a href="#"
+                               delete-url="{{url_for('delete_pipeline', pipe_id=pipe._id)}}"
+                               class="delete_pipe"
+                               uk-icon="icon: trash"></a>
+                            {% if pipe.collected_all_information %}
+                                <a href="{{url_for('edit_pipe', pipe_id=pipe._id)}}" uk-icon="icon: code"></a>
+                            {% endif %}
+
+                        </td>
+                        <td>
+                            {% if pipe.celery_id and pipe.celery_status != "REVOKED" %}
+                                <a href="{{url_for('currently_running', pipe_id=pipe._id)}}"
+                                   uk-tooltip="Show Progress">
+                                    <span uk-icon="icon: future"></span> </a>
+                                {% if pipe.celery_status != "SUCCESS" and pipe.celery_status != "FAILURE" %}
+                                    <a href="#"
+                                       delete-url="{{url_for('cancel_computation', pipe_id=pipe._id)}}"
+                                       class="cancel_computation"
+                                       uk-tooltip="Cancel Computation">
+                                        <span uk-icon="icon: close"></span>
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+
+                        </td>
+                        <td>
+                             {% if pipe.celery_status == "SUCCESS" and not pipe.permutation_test.perm_id %}
+                                <a href="#"
+                                   perm-url="{{url_for('permutation_test', pipe_id=pipe._id)}}"
+                                   class="run_permutations"
+                                   uk-tooltip="Start permutation test">
+                                    <span uk-icon="icon: play-circle"></span></a>
+                             {% endif %}
+                            {% if pipe.permutation_test.perm_id %}
+                                <a href="{{url_for('permutation', pipe_id=pipe._id, permutation_id=pipe.permutation_test.perm_id)}}">
+                                    <span uk-icon="icon: future"></span></a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

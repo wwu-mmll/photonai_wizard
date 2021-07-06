@@ -1,0 +1,20 @@
+<!-- -*- mode: jinja2 -*- -->
+{% extends 'wizard_step_base.html' %}
+
+{% block step_title %}
+    <h2>Step 5</h2>
+    <h1>Neuro Elements</h1>
+{% endblock %}
+
+{% block step_description %}
+    <p>
+        You may select resampling and/or smoothing for your nifti images. You have to select either a brain atlas
+        (specifing ROIs) or a brain mask.
+
+    </p>
+{% endblock %}
+
+
+{% block formular_content %}
+    {% include 'general/render_selections.html' %}
+{% endblock %}

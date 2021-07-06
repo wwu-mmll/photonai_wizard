@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block stylesheets %}
+<style>
+    html, body{
+        background: none;
+    }
+    .wrapper{
+        background: none;
+    }
+    .main-footer{
+        margin-top: 50px;
+    }
+</style>
+{% endblock %}
+
+{% block background %}
+
+{% endblock %}
+
+{% block content %}
+    <video playsinline autoplay muted loop poster="/static/img/index_back.jpg" id="bgvid">
+        <source src="/static/video/SlowMotion3.mp4" type="video/mp4">
+    </video>
+    <div id="bgpic"></div>
+
+
+<div class="uk-container">
+    <div uk-grid class="uk-margin-auto-vertical">
+        <div class="uk-width-4-5@m uk-width-1-1@s">
+            <div class="intro-margin">
+                <h1 class="photon-logo photon-logo-huge">PHOTONAI WIZARD</h1>
+                <h3 class="photon-intro">Train your AI model. Own the hyperparameter space.</h3>
+                <form class="uk-form uk-margin-top" method="POST">
+
+                    {% if form.errors %}
+                    <div class="uk-label-warning">
+                        {{ form.errors }}
+                    </div>
+                    {% endif %}
+
+                    <fieldset class="uk-fieldset">
+
+
+                        {% from "_formhelpers.html" import render_field %}
+
+                        <dl>{{ form.csrf_token }}
+                            {{ render_field(form.username, class_='uk-input') }}
+                            {{ render_field(form.password, class_='uk-input') }}
+                        </dl>
+                        <input type="submit" value="Login" class="uk-button photon-button">
+
+
+                        <!--<div class="uk-margin">-->
+                        <!--<input class="uk-input" type="text" placeholder="Username">-->
+                        <!--</div>-->
+
+                        <!--<div class="uk-margin">-->
+                        <!--<input class="uk-input" type="password" placeholder="Password">-->
+                        <!--</div>-->
+
+
+
+                    </fieldset>
+                </form>
+                <!--<h3 class="photon-intro">A <strong>P</strong>ython-based <strong>H</strong>yperparameter <strong>O</strong>ptimization <strong>To</strong>olbox for <strong>N</strong>eural Networks designed to accelerate and simplify the construction, training, and evaluation of machine learning-->
+                    <!--models.</h3>-->
+                <!--<p><a href="#photon" class="uk-button photon-button photon-button-huge">Get to work now!</a></p>-->
+            </div>
+        </div>
+
+        <div class="uk-width-1-2@m uk-width-1-1@s">
+        </div>
+
+    </div>
+    <div class="intro-margin">
+
+</div>
+
+{% endblock %}
+
+{% block offcanvas %}
+{% endblock %}

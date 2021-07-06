@@ -1,0 +1,92 @@
+<!-- -*- mode: jinja2 -*- -->
+{% extends 'base.html' %}
+
+{% block stylesheets %}
+  <script src="/static/js/plugins/ace/ace.js" type="text/javascript"></script>
+  <script type="text/javascript">
+
+    $( document ).ready(function() {
+
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/idle_fingers");
+        editor.session.setMode("ace/mode/python");
+
+
+        // $('#photon_next_button').html('Finish!');
+        $('#photon_next_button').click(function(event){
+            event.preventDefault();
+
+            var editor_text = editor.getValue();
+
+            $('#photon-syntax-textarea').html(editor_text);
+            $('#photon_step_form').trigger("submit", [{"action": "next"}]);
+
+
+        });
+        $('#photon_syntax_btn').hide();
+    });
+  </script>
+
+{% endblock %}
+
+{% block content %}
+ <form class="form" method="POST" id="photon_step_form">
+    <div  class="final-back uk-margin-xlarge-left">
+<!--        <div class="uk-container">-->
+            <div uk-grid class="uk-grid-margin-large">
+                 <div class="uk-width-1-4@m">
+                    <div  class="uk-margin-large-top">
+                        <img class="uk-margin-large-left" width="100"
+                             src="/static/img/wizard.png"  />
+<!--                        <h2>Off you go - do the magic!</h2>-->
+                        <h2>PHOTON Wizard</h2>
+                    </div>
+                     {% if config.UDO_MODE %}
+                    <div class="uk-margin-top">
+
+                             <button id="photon_next_button"
+                                     type="submit"
+                                     href="{{url_for('run_photon', pipe_id=pipe_id)}}"
+                                class="uk-button uk-button-large uk-button-primary">
+                                Run Analysis
+                            </button>
+
+                    </div>
+                     {% endif %}
+                     <div class="uk-margin-top">
+                        <a href="{{url_for('download_script', pipe_id=pipe_id)}}"
+                           class="uk-button uk-button-large
+                                  {% if not config.UDO_MODE %} uk-button-primary {% else %} purple-button {% endif %}">
+                            Download Script
+                        </a>
+                    </div>
+                    <div class="uk-margin-top">
+                         <a href="{{url_for('load_data')}}"
+                            class="uk-button uk-button-large purple-button">
+                            Edit Analysis
+                        </a>
+                    </div>
+
+                </div>
+                <div class="uk-width-3-4@m">
+
+                    <div class="photon-syntax-final uk-margin-large-top">
+<!--                        <pre id="python-syntax-pre" data-line="">-->
+<!--                            <code id="photon_code" class="language-python">-->
+<!--                                {{photon_code}}-->
+<!--                            </code>-->
+<!--                        </pre>-->
+                        <pre id="editor">
+                            {{photon_code}}
+                        </pre>
+
+                    </div>
+
+                    <textarea id="photon-syntax-textarea" name="photon_syntax" hidden></textarea>
+
+                </div>
+            </div>
+<!--        </div>-->
+        </form>
+    </div>
+{% endblock %}

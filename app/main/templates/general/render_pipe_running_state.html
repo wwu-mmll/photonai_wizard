@@ -1,0 +1,13 @@
+ {% if celery_status == "SUCCESS" %}
+    {% set label_color = "uk-label-success" %}
+{% elif celery_status == "PENDING" %}
+    {% set label_color = "uk-label-default" %}
+{% elif celery_status == "STARTED" %}
+    {% set label_color = "uk-label-warning" %}
+{% elif celery_status == "FAILURE" %}
+    {% set label_color = "uk-label-danger" %}
+{% else %}
+    {% set label_color = "uk-label-default" %}
+    {% set celery_status = "UNPROCESSED" %}
+{% endif %}
+<span class="uk-label {{label_color}}">{{celery_status}}</span>

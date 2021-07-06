@@ -1,0 +1,152 @@
+{% macro render_selection_box (item, select_item, index, loop_index) %}
+    <div class="uk-grid">
+        <div class="uk-width-1-2@xl uk-width-1-2@s">
+            <div class="select-box-wrapper">
+                    <div class="select-box">
+                         <div class="inputGroup tooltip inputgroup_{{item.fieldset_id}}" id="inputgroup_{{item.fieldset_id}}_{{select_item.system_name}}"
+                              data-tooltip-content="#tooltip_content_{{item.fieldset_id}}_{{select_item.system_name}}">
+
+                             {% if loop_index==1 and item.is_required %}
+                                {% set requi = "required" %}
+                             {%else %}
+                                {% set requi = "" %}
+                             {% endif %}
+
+                            {% if item.radio_buttons %}
+                                {% if select_item._id == item.default_value %}
+                                    {% set check = 'checked="checked"' %}
+                                    {% if item.has_parameters %}
+                                        <script type="text/javascript">
+                                            $( document ).ready(function() {
+                                                $('#{{item.fieldset_id}}_{{select_item.system_name}}').trigger("click");
+                                            });
+                                        </script>
+                                    {% endif %}
+                                {% else %}
+                                    {% set check = '' %}
+                                {% endif %}
+                                <input id="{{item.fieldset_id}}_{{select_item.system_name}}"
+                                       class="photon-radio-selectable photon-selectable"
+                                       name="{{item.fieldset_id}}" type="radio" value="{{select_item._id}}"
+                                       {{requi}}
+                                       {{check}}
+                                 />
+                                <label for="{{item.fieldset_id}}_{{select_item.system_name}}"
+                                       class="photon-radio-label">{{select_item.name}}</label>
+                            {% else %}
+                                 {% if item.default_value and select_item._id in item.default_value %}
+
+                                    {% set check = 'checked="checked"' %}
+                                    {% if item.has_parameters %}
+                                            <script type="text/javascript">
+                                                $( document ).ready(function() {
+                                                    id_string = "#options_{{item.fieldset_id}}_{{select_item.system_name}}"
+                                                    $(id_string).show("slow");
+                                                    // $('#{{item.fieldset_id}}_{{select_item.system_name}}').trigger("click");
+                                                });
+                                            </script>
+                                    {% endif %}
+                                    <!--<script type="text/javascript">-->
+                                        <!--$( document ).ready(function() {-->
+                                            <!--$('#{{item.fieldset_id}}_{{select_item.system_name}}').trigger("click");-->
+                                        <!--});-->
+                                    <!--</script>-->
+                                 {% else %}
+                                    {% set check = '' %}
+                                 {% endif %}
+
+                                <input id="{{item.fieldset_id}}_{{select_item.system_name}}"
+                                       class="photon-multi-selectable photon-selectable"
+                                       name="{{item.fieldset_id}}" type="checkbox"
+                                       value="{{select_item._id}}"
+                                       {{requi}}
+                                       {{check}}
+                                />
+                                <label class="photon-radio-label" for="{{item.fieldset_id}}_{{select_item.system_name}}">{{select_item.name}}</label>
+                             {% endif %}
+                         </div>
+                        <div class="tooltip_templates">
+                            <span id="tooltip_content_{{item.fieldset_id}}_{{select_item.system_name}}">
+
+                            <div class="info_box_item">
+                                <h3>{{select_item.name}}</h3>
+                                <h4>{{select_item.short_description}}</h4>
+                                <p>{{select_item.long_description}}</p>
+                            </div>
+
+                            </span>
+                        </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="uk-width-1-2@xl uk-width-1-2@s">
+            <div class="option_group option_group_{{item.fieldset_id}}"
+                 id="options_{{item.fieldset_id}}_{{select_item.system_name}}" >
+
+                {% for hyp in select_item.get_filtered_hyperparameter_objects(item.constraint_list) %}
+                    <div class="tooltip" data-tooltip-content="#tooltip_content_{{item.fieldset_id}}_{{select_item._id}}_{{hyp.system_name}}">
+                        <label class="uk-form-label" for="input_{{item.fieldset_id}}_{{select_item._id}}_{{hyp.system_name}}">{{hyp.name}}</label>
+                        {% if check != '' and item.hyperparameter_dict %}
+                            {% set hyperparameter_key = item.fieldset_id + "_" + select_item._id | string + "_" + hyp.system_name | string %}
+                            {% if hyperparameter_key in item.hyperparameter_dict %}
+                                {% set input_value = item.hyperparameter_dict[hyperparameter_key] %}
+                                {% if input_value is iterable and input_value | length == 0 %}
+                                    {% set input_value = '' %}
+                                {% endif %}
+                            {% endif %}
+                        {% else %}
+                             {% set input_value = hyp.default_objects[0].values %}
+                        {% endif %}
+
+                        <div class="uk-form-controls">
+                            <input class="uk-input" id="input_{{item.fieldset_id}}_{{select_item._id}}_{{hyp.system_name}}" type="text"
+                                   name="{{item.fieldset_id}}_{{select_item._id}}_{{hyp.system_name}}"
+                                   placeholder="..." value="{{input_value}}">
+                        </div>
+                        {% if hyp.value_type =='Categorical' %}
+                             {% from "general/make_tag_editor.html" import make_tag_box %}
+                             {{ make_tag_box(item.fieldset_id + "_" + select_item._id | string + "_" + hyp.system_name,
+                                    hyp.possible_values,
+                                    input_value, hyp.multi_select) }}
+
+                        {% endif %}
+
+                    </div>
+                    <div class="tooltip_templates">
+                        <span id="tooltip_content_{{item.fieldset_id}}_{{select_item._id}}_{{hyp.system_name}}">
+                            <div class="info_box_item">
+                                <h3>{{hyp.name}}</h3>
+                                <h4>{{hyp.short_description}}</h4>
+                                {% if hyp.value_type == 'Categorical' %}
+                                    <p>
+                                        possible values: <span><b>{{hyp.possible_values}}</b></span>
+                                    </p>
+                                {% endif %}
+
+                                <p>{{hyp.long_description}}</p>
+                            </div>
+                        </span>
+                    </div>
+                {% endfor %}
+                {% if item.has_test_disabled %}
+                    <div class="uk-form-controls photon-checkbox">
+                        <!--<input type="hidden" name="{{item.fieldset_id}}_test_disabled" value="on">-->
+                        <input id="{{item.fieldset_id}}_{{select_item._id}}_test_disabled" class="uk-checkbox photon_test_disabled"
+                            name="{{item.fieldset_id}}_{{select_item._id}}_test_disabled" type="checkbox"
+                            {% if item.test_disabled == True %}
+                               checked
+                            {% endif %}
+                        />
+                        <label for="{{item.fieldset_id}}_{{select_item._id}}_test_disabled" >Test disabled</label>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+</div>
+
+
+
+{% endmacro %}
+

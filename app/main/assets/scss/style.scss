@@ -1,0 +1,1134 @@
+$photon-blue: #2388fe;
+$photon-purple: #231c44;
+$photon-light: #f5f4fa;
+$photon-dark: #1b1c2c;
+$photon-very-dark: #0e0e1d;
+$photon-white: #d0cffa;
+$photon-light-blue: #a9c2fe;
+$photon-shadow: #121123;
+$photon-gray: #666;
+html, body{
+  background: $photon-very-dark;
+  font-family: 'Noto Sans', Sans-Serif;
+  font-size: 15px;
+  color: $photon-very-dark;
+
+}
+.uk-h1, .uk-h2, .uk-h3, .uk-h4, .uk-h5, .uk-h6, h1, h2, h3, h4, h5, h6{
+  font-family: 'Noto Sans', Sans-Serif;
+}
+.content-wrapper{
+  //padding-bottom: 55px;
+}
+
+.wrapper{
+  background: $photon-light;
+}
+
+
+a, a:visited, .uk-navbar-nav > li > a, .uk-navbar-nav > li > a:visited{
+  color: $photon-light-blue;
+}
+#navbar{
+  margin-left: -15px;
+  color: $photon-light;
+}
+.uk-navbar-nav > li > a:hover, a:hover{
+  color: $photon-light;
+
+}
+.uk-navbar-nav > li > a {
+  font-family: 'Be Vietnam', Sans-Serif;
+  font-size: 14px;
+  margin: 0 20px 0 0;
+  letter-spacing: 2px;
+}
+
+
+
+header.main-header{
+
+}
+.wizard_icon_size{
+  height: 35px;
+  margin-top: -10px;
+  margin-right: 10px;
+}
+.photon_web_wizard_navi{
+
+  padding: 0px;
+  margin: 10px 0px 0px 20px;
+  color: $photon-light;
+  font-size: 16px;
+
+  li {
+    list-style: none;
+    float: left;
+    padding: 10px 0px 0px 0px;
+    margin: 0px;
+  }
+
+}
+
+.photon-top-menu{
+  background: $photon-very-dark;
+  background-image: url(/static/img/ep_naturalblack.png);
+}
+.photon-logo-nav{
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    box-sizing: border-box;
+    height: 80px;
+    margin: 0px;
+    letter-spacing: 5px;
+    text-align: left;
+  sup{
+    color: $photon-light-blue;
+    font-size: 0.5em;
+  }
+}
+
+
+footer.main-footer{
+  font-size: 0.75em;
+  text-align: center;
+  background: $photon-very-dark;
+  padding: 25px 0px 20px 0px;
+  background-image: url(/static/img/ep_naturalblack.png);
+  color: $photon-gray;
+  a{
+    color: $photon-gray;
+  }
+}
+
+
+
+.intro-margin{
+  margin-top: 135px;
+  //text-align: center;
+  //min-height: 550px;
+  .photon-button{
+    margin-top: 50px;
+  }
+  label{
+    color: $photon-light;
+  }
+  .uk-input{
+    background: $photon-purple;
+    border: none;
+  }
+}
+.photon-logo{
+    font-weight: bold;
+    color: $photon-blue;
+    margin-bottom: 0px;
+    text-shadow: 2px 2px $photon-shadow;
+}
+
+.photon-logo-huge{
+    font-size: 75px;
+    letter-spacing: 10px;
+}
+
+.photon-intro{
+    font-size: 26px;
+    color: $photon-light-blue;
+    margin-top: 15px;
+
+
+
+}
+
+.photon-intro strong, .model-rep .strong-p strong{
+    color: $photon-white;
+    font-weight: bold;
+}
+
+.photon-button{
+    color: $photon-light;
+    background: $photon-purple;
+    padding: 15px 30px;
+    font-weight: bold;
+    font-size: 15px;
+    text-shadow: 3px 3px $photon-shadow;
+}
+.purple-button{
+  background-color: #666;
+  color: $photon-light;
+  :hover{
+    text-decoration: none;
+  }
+}
+
+// ----------------------------------------------
+
+.uk-progress{
+  margin: 0px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  height: 15px;
+}
+
+// ---------- PROJECT HISTORY ---------------->
+.project-history{
+  a {
+    color: #fff;
+  }
+}
+
+// ---------- TOOLTIP ---------------->
+.info_box_item{
+  padding: 10px;
+  max-width: 350px;
+  h3{
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0px 0px 5px 0px;
+  }
+  h4{
+    font-size: 14px;
+    font-weight: normal;
+    font-style: italic;
+    margin: 0px;
+  }
+  p{
+    margin: 5px 0px 0px 0px;
+    font-size: 0.85em;
+  }
+}
+
+
+
+//  ------------ SIDE NAVI --------------------------
+.pipe_name{
+    padding: 25px 10px 10px 25px;
+    margin: 0px;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+ul.side_navi{
+  background: url('/static/img/fulfillItems.png') top left no-repeat;
+  list-style: none;
+  padding: 0px;
+  margin: 0px 35px 0px 15px;
+  font-size: 0.9em;
+  h3{
+    padding: 0px;
+    margin: 0px;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  li{
+    padding: 10px 10px 10px 25px;
+    background: $photon-light;
+    color: $photon-dark;
+    span{
+      text-transform: uppercase;
+      font-size: 0.85em;
+      padding-right: 20px;
+    }
+  }
+  li.active{
+    background: transparent;
+    color: $photon-very-dark;
+
+    a{
+      color: $photon-very-dark;
+      cursor: default;
+    }
+    a:hover{
+      color: $photon-very-dark;
+      cursor: default;
+    }
+  }
+  a{
+      color: $photon-very-dark;
+      cursor: default;
+   }
+  a:hover{
+    text-decoration: none;
+    color: $photon-very-dark;
+    cursor: default;
+  }
+}
+
+.form_buttons{
+  margin-top: 25px;
+  margin-left: 20px;
+}
+
+
+//  ------------ PHOTON SYNTAX --------------------------
+.uk-offcanvas-bar {
+  background: #282b2e;
+}
+
+.uk-offcanvas-bar h3 {
+    letter-spacing: 5px;
+    color:  #bcbcbc;
+}
+
+#python-syntax-pre {
+  //color: #6A8759;
+  //padding: 0 0 0 10px;
+  margin: 0 0 0 0;
+  background: #282b2e;
+  border: 0;
+}
+.token.string{
+  color: lighten($photon-blue, 20%);
+}
+
+#cheat-sheet {
+  code.hljs{
+    width: auto;
+    background: white;
+    color: black;
+    margin:0;
+  }
+  padding: 0 0 0 0;
+  margin: -20px 0 0 0;
+  border: 0;
+  -moz-tab-size: 1;
+  tab-size: 1;
+  background: $photon-light;
+}
+
+
+
+
+// --------- STEP INFORMATION ----------
+.step_infos{
+  margin: 35px 0px 55px 0px;
+  hr{
+    width: 100%;
+    border-color: $photon-dark;
+  }
+}
+.step_title{
+  padding: 0px 0px 0px 0px;
+  h1{
+    margin: 5px 0px 0px 0px;
+    font-size: 1.7em;
+  }
+  h2{
+    margin: 0px;
+    text-transform: uppercase;
+    font-size: 1.3em;
+    letter-spacing: 3px;
+  }
+}
+.step_description p{
+  margin-top: 15px;
+  padding-right: 50px;
+}
+
+// --------- PANDAS DATAFRAME ----------
+
+.pandas_dataframe {
+    overflow-x: scroll;
+    height: 700px;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+}
+.pandas_dataframe > .body {
+    overflow-y: scroll;
+    flex: 1;
+    -webkit-flex: 1;
+}
+
+.pandas_dataframe {
+  table {
+  }
+  th, td {
+    border: 1px solid #bbb;
+    padding: 4px;
+  }
+  th {
+    background-color: lightgrey;
+    border-width: 1px;
+    text-align: center;
+    word-wrap:break-word;
+  }
+  td {
+    border-width: 1px;
+
+  }
+
+  tr:first-child td {
+    border-top-width: 0;
+  }
+  tr:nth-child(even) {
+    background-color: #eee;
+  }
+  tr:hover {
+    background: silver;
+    cursor: pointer;
+    //text-align: center;
+  }
+}
+
+.table_wrapper {
+  padding-bottom: 30px;
+  font-size: 12px;
+}
+
+.small-column {
+  th, td {
+    min-width: 80px;
+    max-width: 80px;
+  }
+  td {
+    text-align: center;
+    min-width: 80px;
+    max-width: 80px;
+    font-size: 10px;
+  }
+}
+
+.wide-column {
+  th, td {
+    border: 1px solid #bbb;
+    padding: 4px;
+    min-width: 100px;
+  }
+  th {
+    background-color: lightgrey;
+    border-width: 1px;
+    word-wrap:break-word;
+  }
+  td {
+    border-width: 1px;
+    width: 1200px;
+    font-size: 10px;
+  }
+}
+
+
+// --------- MODEL HISTORY ----------
+.model_history {
+  //margin: 30px 100px;
+  a {
+    color: #0f6ecd;
+  }
+  th, td {
+    max-width:400px;
+  }
+}
+
+// --------- HIDDEN QUIZ ----------
+.hidden-quiz {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 16px;
+  dt {
+    font-size: 16px;
+  }
+}
+
+#hidden-quiz-button {
+  a {
+    text-decoration: none;
+    color: $photon-dark;
+  }
+  a:hover {
+    color: $photon-dark;
+  }
+}
+
+
+.perm-progress{
+  h2{
+    margin-top: 20px;
+    margin-left: 0px;
+    margin-bottom: 10px;
+  }
+  p{
+    margin: 0px;
+    margin-bottom: 10px;
+  }
+  span{
+    text-transform: uppercase;
+    margin-right: 10px;
+    font-size: 0.8em;
+  }
+  a{
+    color: $photon-dark;
+    :hover{
+      color: $photon-dark;
+      font-size: 1.2em;
+    }
+  }
+}
+
+
+// --------- VALIDATE ATLAS ----------
+.atlas-viewer {
+  max-width: 500px;
+}
+
+
+
+// --------- TRANSFORMER ----------
+#new_transformer {
+  //background: $photon-gray;
+  color: $photon-light;
+  margin-bottom: 10px;
+}
+
+.transformer-icon {
+  margin: 5px 10px 5px 5px;
+  a {
+    text-decoration: none;
+  }
+}
+  #sortable li a.delete_transformer {
+    background: $photon-gray;
+    color: $photon-light;
+    margin-right: 3px;
+    font-size: .875rem;
+    line-height: 38px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    float: right;
+
+  }
+
+  .li-transformer {
+    a {
+      color: $photon-dark;
+    }
+  }
+
+// --------- HOME ----------
+.data-type-selector,.analysis-type-selector{
+  color: $photon-light;
+  background: $photon-gray;
+  min-width: 175px;
+  &:hover, &:visited{
+    color: $photon-light;
+    background: $photon_purple;
+  }
+}
+
+.card-design-tutorials {
+  margin-top: 300px;
+  margin-bottom: 40px;
+  margin-right: 20px;
+  margin-left: 20px;
+  max-width: 320px;
+
+  p {
+    color: $photon-dark;
+  }
+
+  .uk-card-primary {
+    background: $photon-blue;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.home-back {
+  background-image: url(/static/img/home_back_3.jpg);
+}
+.error-back {
+  background-image: url(/static/img/magic_back.jpg);
+  .card-design{
+    margin-top: 100px;
+  }
+  a{
+    color: $photon-dark;
+  }
+  text-align: center;
+}
+
+.celery_queue_list{
+  h1{
+    color: $photon-blue;
+    margin: 30px 0px 0px 0px;
+    font-size: 30px;
+  }
+  h4{
+    margin: 20px 0px 0px 0px;
+  }
+  table{
+    margin-top: 0px
+  }
+}
+
+.faq{
+  a {
+    text-decoration: none;
+    color: $photon-dark;
+  }
+  h1{
+    color: $photon-blue;
+    margin: 50px 0px 40px 0px;
+    font-size: 30px;
+    text-align: center;
+  }
+  li{
+    padding-top: 20px;
+  }
+}
+
+// --------- FINAL ----------
+.card-design {
+  margin-top: 300px;
+  margin-bottom: 200px;
+
+  .uk-card-primary {
+    background: $photon-blue;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+.default_pipeline-grid{
+  h4{
+    margin-bottom: 10px;
+  }
+}
+.custom-pipe-button{
+  font-size: 21px;
+  text-transform: none;
+}
+.default-pipeline-filter-buttons{
+  margin-top: 30px;
+  h2{
+    margin: 10px 0px 65px 0px;
+    color: $photon-purple;
+    font-size: 22px;
+    text-align: center;
+  }
+  img{
+    width: 125px;
+    margin-bottom: 10px;
+  }
+
+}
+.default-pipeline-card{
+  a{
+    color: $photon-purple;
+  }
+  a:hover{
+    color: $photon-purple;
+    text-decoration: none;
+  }
+  a.uk-button {
+   color: $photon-light;
+  }
+  .uk-label{
+    //background-color: #3C454C;
+    font-weight: normal;
+  }
+  p{
+    padding: 3px 5px;
+  }
+  .uk-card-title{
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  .uk-accordion-title {
+    font-size: 0.8em;
+  }
+  h4{
+    margin-bottom: 5px;
+    margin-left: 10px;
+    font-size: 0.9em;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  table{
+    margin: 0px;
+  }
+
+}
+
+.table-top-line{
+    border-top: 1px solid #e5e5e5;
+}
+
+.default-pipelines{
+  h3{
+    margin-top: 75px;
+    margin-bottom: 20px;
+  }
+  h3:first-of-type{
+    margin-top: 0px;
+  }
+  margin-bottom: 100px;
+}
+.purple-font{
+  background-color: $photon-purple;
+  color: $photon-light;
+}
+.final-back {
+  //background-image: url(/static/img/home_back_dark.jpg);
+  h2{
+    margin-top: 15px;
+    margin-left: 40px;
+    font-size: 1.4em;
+    font-weight: bold;
+    color: $photon-blue;
+  }
+  .uk-button{
+    min-width: 250px;
+  }
+}
+.back_to_steps{
+  //display: block;
+  background: $photon-blue;
+  color: $photon-light;
+  margin: 0;
+  padding: 0;
+  margin-top: -50px;
+  margin-right: 450px;
+  //text-align: left;
+}
+
+.photon-syntax-final{
+  //max-height: 500px;
+  max-width: 1200px;
+  //overflow: scroll;
+  code.hljs{
+    padding: 10px 50px;
+  }
+
+}
+
+#editor {
+  min-height: 600px;
+  font-size: 16px;
+
+}
+
+//  ------------ FORMULAR --------------------------
+  .formular_space {
+    margin-left: 30px;
+    margin-right: 50px;
+    .uk-grid {
+      margin-bottom: 0px;
+      margin-top: 0px;
+    }
+  }
+
+  .option_group {
+    display: none;
+  }
+
+  .photon-fieldset {
+    border: none;
+    padding: 0px;
+    margin: 0px 0px 45px 0px;
+
+    label{
+      font-size: 13px;
+    }
+    h3 {
+      font-size: 1.1em;
+      margin-bottom: 0px;
+      font-weight: bold;
+    }
+    p {
+      margin-top: 0px;
+      margin-bottom: 5px;
+      font-size: 0.8em;
+    }
+  }
+
+  // TOGGLE BUTTON
+  .select-box-wrapper {
+    position: relative;
+    display: block;
+    margin: 0px 0px 50px 0px;
+    max-width: 450px;
+
+  }
+
+  .tooltip_templates {
+    display: none;
+  }
+
+  label.error {
+    color: red;
+  }
+
+  #sortable {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    .tag-editor li{
+      margin: 3px 0;
+      padding: 0px;
+    }
+    li {
+      margin: 0 3px 20px 3px;
+      padding: 0.4em;
+      padding-left: 1.5em;
+
+      //background: #f7f7f7;
+      a {
+        font-size: 1.4em;
+      }
+      a:hover {
+        color: $photon-dark;
+        text-decoration: none;
+      }
+      span {
+        margin-left: -1.3em;
+      }
+
+      button {
+        float: right;
+      }
+    }
+  }
+
+  .button-smaller-margin{
+    padding: 0px 10px;
+  }
+  .pipe_summary{
+    a{
+      font-size: 15px;
+    }
+    p, a:hover{
+      color: $photon-dark;
+      font-size: 15px;
+      text-decoration: none;
+    }
+    b{
+      color: $photon-blue;
+    }
+    h3 {
+      font-size: 1.1em;
+      margin-bottom: 0px;
+      font-weight: bold;
+    }
+    p {
+      margin-top: 5px;
+      margin-bottom: 5px;
+      font-size: 0.8em;
+    }
+
+    li{
+      margin-bottom: 30px;
+    }
+  }
+
+  .photon-checkbox{
+    margin-top: 10px;
+  }
+  .select-box {
+
+    position: relative;
+    display: inline;
+    box-sizing: border-box;
+
+    .inputGroup {
+      background-color: #fff;
+      display: block;
+      margin: 15px 0px 0px 0px;
+      position: relative;
+
+      label {
+        padding: 5px 20px;
+        width: 100%;
+        display: block;
+        text-align: left;
+        color: #3C454C;
+        cursor: pointer;
+        position: relative;
+        z-index: 2;
+        transition: color 200ms ease-in;
+        overflow: hidden;
+
+        &:before {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          content: '';
+          background-color: $photon-purple;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%) scale3d(1, 1, 1);
+          transition: all 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
+          opacity: 0;
+          z-index: -1;
+        }
+
+        &:after {
+          width: 23px;
+          height: 23px;
+          content: '';
+          border: 2px solid #D1D7DC;
+          background-color: #fff;
+          background-image: url("data:image/svg+xml,%3Csvg width='25' height='25' viewBox='0 0 35 35' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.414 11L4 12.414l5.414 5.414L20.828 6.414 19.414 5l-10 10z' fill='%23fff' fill-rule='nonzero'/%3E%3C/svg%3E ");
+          background-repeat: no-repeat;
+          background-position: 1px 2px;
+          border-radius: 50%;
+          z-index: 2;
+          position: absolute;
+          right: 20px;
+          top: 50%;
+          transform: translateY(-50%);
+          cursor: pointer;
+          transition: all 200ms ease-in;
+        }
+      }
+
+      label.error {
+        border: red;
+        background: $photon-light;
+        padding: 0px 0px 10px 0px;
+        overflow: auto;
+        display: block;
+        text-align: left;
+        color: red;
+        cursor: pointer;
+        position: relative;
+        z-index: 2;
+
+        &:after {
+          content: none;
+        }
+        &:before {
+          content: none;
+        }
+      }
+
+      input:checked ~ label {
+        color: #fff;
+
+        &:before {
+          transform: translate(-50%, -50%) scale3d(56, 56, 1);
+          opacity: 1;
+        }
+
+        &:after {
+          background-color: $photon-blue;
+          border-color: $photon-blue;
+        }
+      }
+
+      input {
+        width: 23px;
+        height: 23px;
+        order: 1;
+        z-index: 2;
+        position: absolute;
+        right: 30px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        visibility: hidden;
+      }
+      input:invalid {
+        box-shadow: 0 0 5px 1px purple;
+      }
+    }
+
+    // codepen formatting
+    .form {
+      //padding: 0 16px;
+      //margin: 50px auto;
+      //font-size: 18px;
+      //font-weight: 600;
+      //line-height: 36px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: inherit;
+    }
+
+    code {
+      background-color: #9AA3AC;
+      padding: 0 8px;
+    }
+  }
+
+
+
+  code#progress{
+      //transform: perspective(500px) rotateX(25deg);
+      //transform-origin: 50% 100%;
+      //animation: scroll 100s linear 16s;
+    //margin-right: 100px;
+  }
+
+  .photon-running{
+    background: url('/static/img/home_back_dark.jpg') repeat center;
+
+    code {
+      color: $photon-light;
+      background-color: $photon-very-dark;
+    }
+    pre#python-syntax-pre{
+      margin-right: 100px;
+      color: $photon-light;
+      background-color: $photon-very-dark;
+    }
+
+  }
+  .pipe_running_infos{
+    margin-top: 80px;
+    color: $photon-light;
+    h4{
+      color: $photon-light-blue;
+      text-transform: uppercase;
+      font-size: 15px;
+      margin: 20px 0px 5px 0px;
+
+
+    }
+    h2{
+      color: $photon-light;
+      margin: 5px 0px 30px 0px;
+      font-size: 25px;
+    }
+
+  }
+
+
+  .photon-animation {
+    position: relative;
+    min-width: 500px;
+    min-height: 500px;
+    //height: 100%;
+    //width: 100%;
+
+    // THE MOON AND EARTH WAITING ANIMATION
+    // -----------------------------------------------
+
+    /* The magic here that makes animations wait */
+    .js-loading *,
+    .js-loading *:before,
+    .js-loading *:after {
+      animation-play-state: paused !important;
+    }
+
+    .animated-header {
+      //background: #000;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      overflow: hidden;
+    }
+
+    //.animated-header:before {
+    //  animation: show-background 60s .5s cubic-bezier(0,1,.5,1) forwards;
+    //  //background: url(https://cssanimation.rocks/images/random/space.jpg) repeat center;
+    //  background: url('/static/img/home_back.jpg') repeat center;
+    //  background-size: cover;
+    //  content: "";
+    //  opacity: 0;
+    //  height: 125vh;
+    //  position: absolute;
+    //  left: -10%;
+    //  top: -10%;
+    //  width: 125vw;
+    //}
+
+    .loading {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #aaa;
+      font-size: 48px;
+      display: none;
+    }
+
+    .js-loading .loading {
+      display: block;
+    }
+
+    .earth {
+      width: 200px;
+      height: 200px;
+      position: absolute;
+      top: calc(50% - 100px);
+      left: calc(50% - 100px);
+    }
+
+    .moon {
+      animation: spin 30s linear infinite;
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      top: calc(50% - 200px);
+      left: calc(50% - 200px);
+      transform-origin: 150px 200px;
+    }
+
+    .earth img, .moon img {
+      animation: show-on-load 1s .5s cubic-bezier(0, 1.6, .6, 1) forwards;
+      border-radius: 50%;
+      opacity: 0;
+      width: 100%;
+      box-shadow: 0 0 12em 1em rgba(110, 140, 200, .6);
+    }
+
+    .moon img {
+      animation: fade-in 2s 1s cubic-bezier(0, 1.5, 1, 1) forwards, spin 30s linear reverse infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotateZ(360deg);
+      }
+    }
+
+    @keyframes show-background {
+      0% {
+        opacity: 0;
+        transform: none;
+      }
+      30% {
+        opacity: .5;
+      }
+      100% {
+        opacity: .5;
+        transform: scale(.8)
+      }
+    }
+
+    @keyframes show-on-load {
+      0% {
+        opacity: 0;
+        transform: scale(.5);
+      }
+      100% {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @keyframes fade-in {
+      to {
+        opacity: 1;
+      }
+    }
+  }
+

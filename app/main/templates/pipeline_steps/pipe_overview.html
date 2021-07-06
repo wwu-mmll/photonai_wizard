@@ -1,0 +1,75 @@
+{% extends 'wizard_step_base.html' %}
+
+{% block step_title %}
+    <h2>Step 7</h2>
+    <h1>Your Project</h1>
+{% endblock %}
+
+
+{% block formular_content %}
+{% from "general/render_pipeline_element_table.html" import render_element_table %}
+
+
+
+
+    {% for item in selection_items %}
+        {% include 'general/textbox.html' %}
+    {% endfor %}
+
+
+    <div uk-grid >
+
+<!--                    <h3>-->
+<!--                        <img src="/static/img/wizard.png" width="50"/>-->
+<!--                        Your Pipeline-->
+<!--                    </h3>-->
+        <div class="uk-width-1-2@m pipe_summary">
+                   <ul uk-accordion>
+                        <li>
+                            <a class="uk-accordion-title" href="#">
+                                <h3>Design Choices</h3>
+                                <p>{{pipe.meta_data_summary | safe}}</p>
+                            </a>
+                            <div class="uk-accordion-content">
+                                {{render_element_table(pipe.meta_data_dict)}}
+                            </div>
+                        </li>
+                       {% if pipe.neuro_dict | length > 0 %}
+                           <li>
+                                <a class="uk-accordion-title" href="#">
+                                    <h3>Neuro Transformers</h3>
+                                    <p>{{pipe.neuro_summary | safe}}</p>
+                                </a>
+                                <div class="uk-accordion-content">
+                                    {{render_element_table(pipe.neuro_dict)}}
+                                </div>
+                            </li>
+                        {% endif %}
+                       <li>
+                            <a class="uk-accordion-title" href="#">
+                                <h3>Transformers</h3>
+                                <p>{{pipe.transformer_summary | safe}}</p>
+                            </a>
+                            <div class="uk-accordion-content">
+                                  {{render_element_table(pipe.transformer_dict)}}
+                            </div>
+                        </li>
+                       <li>
+                            <a class="uk-accordion-title" href="#">
+                                <h3>Estimators</h3>
+                                <p>{{pipe.estimator_summary | safe}}</p>
+                            </a>
+                            <div class="uk-accordion-content">
+                                {{render_element_table(pipe.estimator_dict)}}
+                            </div>
+                        </li>
+                    </ul>
+        </div>
+
+
+    </div>
+
+
+{% endblock %}
+
+

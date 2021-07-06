@@ -1,0 +1,41 @@
+<div id="my-flashy-permutation-modal" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title">Permutation Test</h2>
+        <form class="form" method="POST" id="run_permutations" action="">
+            <div uk-grid class="uk-grid-large">
+
+                <div class="uk-width-1-3@m">
+                    <img src="/static/img/wizard.png" />
+                </div>
+                <div class="uk-width-2-3@m">
+                    <p>To obtain an unbiased p-value of your hyperpipe, you can now run a permutation test. This can take a while...</p>
+
+                        <div class="photon-fieldset">
+                            <h3>Number of Permutations</h3>
+                                <div class="input_box">
+                                    <input class="uk-input" id="input_n_perms" type="text"
+                                                       name="n_perms"
+                                                       placeholder="..." value="1000" required>
+                                </div>
+                        </div>
+
+                     <div id="load_values" class="uk-margin-large-top">
+                        <div class="sk-three-bounce">
+                                    <div class="sk-child sk-bounce1"></div>
+                                    <div class="sk-child sk-bounce2"></div>
+                                    <div class="sk-child sk-bounce3"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="uk-text-right">
+                     <a class="uk-button uk-button-default uk-modal-close" type="button">Cancel</a>
+                     <button id="btn_run_perms"  class="uk-button uk-button-primary">Run</button>
+                </div>
+
+
+            </div>
+        </form>
+    </div>
+</div>

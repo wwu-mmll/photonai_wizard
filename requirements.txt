@@ -1,0 +1,24 @@
+# https://stackoverflow.com/questions/61628503/flask-uploads-importerror-cannot-import-name-secure-filename
+werkzeug==0.16.0
+#
+flask
+flask-wtf
+flask-login
+flask-uploads
+flask-ldap3-login
+pymodm
+faker
+nilearn
+mpld3
+tailer
+pandas
+scipy
+numpy
+scikit-learn
+matplotlib
+requests
+git+https://github.com/wwu-mmll/photonai@develop
+# git+https://github.com/wwu-mmll/photonai_neuro
+xlrd
+plotly
+

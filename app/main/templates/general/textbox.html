@@ -1,0 +1,32 @@
+
+<div class="photon-fieldset">
+    <h3>{{item.title}}</h3>
+    <p>{{item.question}}</p>
+    <div uk-grid>
+        {% if not item.full_width %}
+            <div class="uk-width-1-3@m">
+        {% else %}
+            <div class="uk-width-1-2@m">
+        {% endif %}
+            <div class="input_box">
+                <input class="uk-input" id="input_{{item.fieldset_id}}" type="text"
+                                   name="{{item.fieldset_id}}"
+                                   placeholder="..." value="{{item.default_value|safe}}"
+                       {% if item.is_required %}
+                        required
+                       {% endif %}
+                >
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+{% if item.possible_values %}
+     {% from "general/make_tag_editor.html" import make_tag_box %}
+     {{ make_tag_box(item.fieldset_id, item.possible_values, item.default_value, item.multi_select) }}
+
+{% endif %}

@@ -1,0 +1,121 @@
+<!-- -*- mode: jinja2 -*- -->
+{% extends 'wizard_step_base.html' %}
+
+{% block stylesheets %}
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/spinkit.css') }}">
+    <script type="text/javascript">
+     var xhr = null;
+     function fetchstatus(){
+            xhr = $.ajax({
+              url: 'load_data_for_validation',
+              type: 'get',
+              success: function(response) {
+                  // Perform operation on the return value
+
+                  var response_dict = JSON.parse(response);
+                  $("#targets_div").append($.parseHTML(response_dict["targets"]));
+                  $('#targets_div_loading').hide();
+                  $("#covariates_div").html(response_dict["covariates"]);
+                  $("#covariates_div_loading").hide();
+                  $("#groups_div").html(response_dict["groups"]);
+                  $("#groups_div_loading").hide();
+                  $("#features_div").html(response_dict["features"]);
+                  $('#features_div_loading').hide();
+
+              }
+             });
+        }
+
+      $(document).ready(function(){
+          fetchstatus();
+          $("#photon_next_button").click(function(){
+              xhr.abort();
+            });
+      });
+     </script>
+
+{% endblock %}
+
+{% block step_title %}
+    <h2>Step 4</h2>
+    <h1>Data Validation</h1>
+{% endblock %}
+
+{% block step_description %}
+    <p>
+        Check if all your data has been loaded correctly. Return to the data loading page in case anything went wrong.
+    </p>
+{% endblock %}
+
+{% block formular_content %}
+    <div class="uk-grid">
+        <div  class="uk-width-1-4 table_wrapper small-column">
+            <h2>
+                Targets
+            </h2>
+            <div id="targets_div"></div>
+            <div id="targets_div_loading">
+                  <div class="sk-three-bounce">
+                        <div class="sk-child sk-bounce1"></div>
+                        <div class="sk-child sk-bounce2"></div>
+                        <div class="sk-child sk-bounce3"></div>
+                </div>
+            </div>
+
+        </div>
+
+        {% if feature_header == "Features" %}
+            {% set table_class = "small-column" %}
+        {% else %}
+            {% set table_class = "wide-column" %}
+        {% endif %}
+        <div class="uk-width-1-2 table_wrapper {{table_class}}">
+            <h2>
+                {{feature_header}}
+            </h2>
+            <div id="features_div"></div>
+            <div id="features_div_loading">
+                  <div class="sk-three-bounce">
+                            <div class="sk-child sk-bounce1"></div>
+                            <div class="sk-child sk-bounce2"></div>
+                            <div class="sk-child sk-bounce3"></div>
+                  </div>
+            </div>
+
+        </div>
+        <div class="uk-width-1-4">
+        </div>
+
+
+        <div  class="uk-width-1-4 table_wrapper small-column">
+            <h2>
+                Groups
+            </h2>
+            <div id="groups_div"></div>
+            <div id="groups_div_loading">
+                  <div class="sk-three-bounce">
+                        <div class="sk-child sk-bounce1"></div>
+                        <div class="sk-child sk-bounce2"></div>
+                        <div class="sk-child sk-bounce3"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div  class="uk-width-1-2 table_wrapper small-column">
+            <h2>
+                Covariates
+            </h2>
+            <div id="covariates_div"></div>
+            <div id="covariates_div_loading">
+                  <div class="sk-three-bounce">
+                        <div class="sk-child sk-bounce1"></div>
+                        <div class="sk-child sk-bounce2"></div>
+                        <div class="sk-child sk-bounce3"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

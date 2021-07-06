@@ -1,0 +1,39 @@
+{% macro render_field(field, label=True) %}
+  {% if label %}
+    <dt class="uk-margin">{{ field.label }}</dt>
+  {% endif %}
+  <dd>
+  {% if field.errors %}
+    {% for error in field.errors %}
+      <span class="uk-label uk-label-danger">{{ error }}</span>
+    {% endfor %}
+  {% endif %}
+  {{ field(**kwargs)|safe }}
+  </dd>
+{% endmacro %}
+
+{% macro render_checkbox(field) %}
+  <dt class="uk-margin"></dt>
+  <dd>{{ field(**kwargs)|safe }}
+    {{ field.label }}
+  {% if field.errors %}
+    <ul class="errors uk-list">
+    {% for error in field.errors %}
+      <li class="uk-text-danger">{{ error }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+  </dd>
+{% endmacro %}
+
+<!--{% macro render_text_area(field, rows, cols) %}-->
+  <!--<dt class="uk-margin">{{ field.label }}</dt>-->
+  <!--<dd>-->
+  <!--{% if field.errors %}-->
+    <!--{% for error in field.errors %}-->
+      <!--<span class="uk-label uk-label-danger">{{ error }}</span>-->
+    <!--{% endfor %}-->
+  <!--{% endif %}-->
+  <!--{{ field(**kwargs)|safe }}-->
+  <!--</dd>-->
+<!--{% endmacro %}-->

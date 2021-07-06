@@ -1,0 +1,25 @@
+<!-- -*- mode: jinja2 -*- -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="uk-background-cover uk-background-bottom-center error-back" uk-height-viewport="offset-bottom: 150px">
+        <div class="uk-child-width-1-3 uk-grid-match uk-flex-center" uk-grid>
+            <div class="card-design uk-grid-match">
+                <a href="{{url_for('index')}}">
+                    <div class="uk-card uk-card-body ">
+                        <img src="/static/img/wizard.png" class="uk-align-center">
+                        <h3 class="uk-card-title">
+                            {% if header %}
+                                {{header}}
+                            {% else %}
+                                Sorry, the Wizard is confused..
+                            {% endif %}
+                        </h3>
+                        <p class="uk-text-large">{{error_msg | safe}}</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+<!-- -*- mode: jinja2 -*- -->
+{% extends 'wizard_step_base.html' %}
+
+{% block step_title %}
+    <h2>Step 8</h2>
+    <h1>Estimator</h1>
+{% endblock %}
+
+{% block step_description %}
+ <div uk-grid>
+        <div class="uk-width-1-2">
+            <p class="uk-padding-remove">
+                Finally, you can choose between a variety of different classification or regression algorithms (called <b>estimator</b>).
+                Please define all hyperparameters that PHOTON should evaluate for you.
+            </p>
+        </div>
+        <div class="uk-width-1-2">
+            <pre id="cheat-sheet">
+                <code class="python">
+# SYNTAX CHEAT SHEET
+IntegerRange(start=1, stop=10, step=2)
+FloatRange(start=0.01, stop=10, step=0.5,
+           range_type='logspace ODER linspace')
+                </code>
+            </pre>
+        </div>
+    </div>
+    <p>
+
+    </p>
+{% endblock %}
+
+
+{% block formular_content %}
+    {% include 'general/render_selections.html' %}
+{% endblock %}
+
+

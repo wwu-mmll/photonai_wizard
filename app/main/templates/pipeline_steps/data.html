@@ -1,0 +1,37 @@
+<!-- -*- mode: jinja2 -*- -->
+{% extends 'wizard_step_base.html' %}
+
+{% block step_title %}
+    <h2>Step 2</h2>
+    <h1>Data</h1>
+{% endblock %}
+
+{% block step_description %}
+    <p>
+        Please provide an Excel sheet that contains your targets and features as numerical values. A folder for your
+        project as already been created under /spm-data/Scratch/photon_wizard/your-name/your-analysis/.Please upload an
+        Excel sheet containing your data. Then specify in which columns your targets and
+        features are stored. Remember that this is the Pythonic indexing where 0 is the first column and so on and so forth.
+        The feature columns have to be successive. Define the first and the last feature column.
+    </p>
+{% endblock %}
+
+
+{% block formular_content %}
+    {% if udo_mode == True %}
+        <div class="photon-fieldset">
+            <h3>Data Sheet</h3>
+            <p>Provide an Excel sheet containing all data. Remember to reupload it in case you change anything in your
+            data file. </p>
+            <div uk-grid>
+                <div class="uk-width-1-3@m">
+                    <dl>
+                        {% from "_formhelpers.html" import render_field %}
+                        {{ render_field(form.excel_file, class_='uk-input', allow='*.xlsx') }}
+                    </dl>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% include 'general/render_selections.html' %}
+{% endblock %}

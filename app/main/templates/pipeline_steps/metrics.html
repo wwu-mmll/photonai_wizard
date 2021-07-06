@@ -1,0 +1,25 @@
+<!-- -*- mode: jinja2 -*- -->
+{% extends 'wizard_step_base.html' %}
+
+{% block step_title %}
+    <h2>Step 5</h2>
+    <h1>Performance</h1>
+{% endblock %}
+
+{% block step_description %}
+    <p>
+        Please specify the <b>performance metrics</b> that are used to evaluate your ML model. You can choose between one and all
+        of the metrics in the <b>Metrics</b> section. However, you can only pick one metric in the <b>Best Config Metric</b>
+        section that is then used to find the best hyperparameter configuration.
+    </p>
+{% endblock %}
+
+
+{% block formular_content %}
+
+    {% include 'general/render_selections.html' %}
+
+{% endblock %}
+
+
+

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block stylesheets %}
+<style>
+    html, body{
+        background: none;
+    }
+    .wrapper{
+        background: none;
+    }
+    .main-footer{
+        margin-top: 50px;
+    }
+    .strong-p{
+        color: #a9c2fe;
+        /*color: #f5f4fa;*/
+        font-size: 22px;
+
+    }
+</style>
+{% endblock %}
+
+{% block background %}
+
+{% endblock %}
+
+{% block content %}
+    <video playsinline autoplay muted loop poster="/static/img/index_back.jpg" id="bgvid">
+        <source src="/static/video/SlowMotion3.mp4" type="video/mp4">
+    </video>
+    <div id="bgpic"></div>
+
+
+<div class="uk-container">
+    <div uk-grid class="uk-margin-auto-vertical">
+        <div class="uk-width-4-5@m uk-width-1-1@s">
+            <div class="intro-margin">
+                <h1 class="photon-logo photon-logo-huge">PHOTONAI WIZARD</h1>
+                <h3 class="photon-intro">Train your AI model. </h3> <! -- Own the hyperparameter space. -->
+
+                <p class="strong-p">We removed the need to learn coding or toolbox syntax by abstracting the machine learning training and testing workflow
+                    and created a system in which you can intuitively select and combine pipeline elements, play with their arrangement and design custom machine learning pipeline layouts.
+                </p>
+
+
+
+                <a href="{{url_for('default_pipeline_list')}}" class="uk-button uk-button-large photon-button" style="margin-top: 50px; margin-bottom: 50px;">
+                    Start the PHOTONAI Wizard
+                </a>
+
+            </div>
+        </div>
+
+        <div class="uk-width-1-2@m uk-width-1-1@s">
+        </div>
+
+    </div>
+    <div class="intro-margin">
+
+</div>
+
+{% endblock %}
+
+{% block offcanvas %}
+{% endblock %}

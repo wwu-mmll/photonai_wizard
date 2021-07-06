@@ -1,0 +1,115 @@
+{% macro render_element_table (element_dict) %}
+    <table class="uk-table  uk-table-small uk-text-small">
+        <tbody>
+            {% for element_name, element in element_dict.items() %}
+                {% if element|length > 0 %}
+                    {% for hyp_key, hyp_value in element.items() %}
+                        {% set inner_loop_index = loop.index %}
+                            {% if inner_loop_index == 1 %}
+                                <tr class="table-top-line">
+                                    <td class="uk-width-1-3">
+                                        {{element_name}}
+                                    </td>
+                            {% else %}
+                                <tr>
+                                    <td class="uk-width-1-3">
+                                    </td>
+                            {% endif %}
+
+                            <td class="uk-width-1-3">
+                                {{hyp_key}}
+                            </td>
+                            <td class="uk-width-1-3">
+                                {% if not hyp_value is mapping %}
+                                    {{hyp_value|string}}
+                                {% else %}
+                                    {% if hyp_value|length > 0%}
+                                        {{hyp_value}}
+                                    {% endif %}
+                                {% endif %}
+
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr class="table-top-line">
+                        <td class="uk-width-1-3">
+                            {{element_name}}
+                        </td>
+                        <td class="uk-width-1-3"></td>
+                        <td class="uk-width-1-3"></td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+{% endmacro %}
+
+
+{% macro render_default_pipe_card(default_pipe, new) %}
+{% from "general/render_pipeline_element_table.html" import render_element_table %}
+ <div class="uk-width-1-2@m default-pipeline-card"
+      data-type="{{default_pipe.data_type.name}}"
+      analysis-type="{{default_pipe.analysis_type.name}}">
+        <div class="uk-card uk-card-hover uk-card-small uk-card-default ">
+            <div class="uk-card-header">
+                <div class="uk-grid-small uk-flex-middle" uk-grid>
+                    <div class="uk-width-expand">
+
+                        <h3 class="uk-card-title uk-margin-remove-bottom">
+                            {% if default_pipe.complexity == "Basic" %}
+                                <div class="uk-label uk-label-success uk-margin-small-right">{{default_pipe.complexity}}</div>
+                            {% else %}
+                                <div class="uk-label uk-label-warning uk-margin-small-right">{{default_pipe.complexity}}</div>
+                         {% endif %}
+                            {{default_pipe.name}}</h3>
+                    </div>
+                    <div class="uk-width-auto">
+                        <a href="{{ url_for('choose_default_pipe', new=new, pipe_id=default_pipe._id) }}"
+                           class="uk-button uk-button-small uk-button-primary">
+                            Select Pipeline
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-card-body">
+                 <div uk-grid class="uk-grid-small">
+                            {% for prop, bval in default_pipe.sorted_property_dict.items() %}
+                                {% if prop != "Hyperparameter Optimization" %}
+                                    <div class="uk-width-1-3@m">
+                                        <p class="uk-margin-remove-top uk-margin-remove-bottom
+                                                  uk-text-small uk-text-center {% if bval %} uk-text-bold {% endif %}"
+                                           style="">
+                                            {% if bval %}
+                                                <span class="" uk-icon="check"></span>
+                                            {% else %}
+                                                <span class="" uk-icon="close"></span>
+                                            {% endif %}
+                                            {{prop}}</p>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                 </div>
+            </div>
+            <div class="uk-card-footer">
+                <ul uk-accordion>
+                    <li>
+                        <a class="uk-accordion-title" href="#">
+                            <span class="uk-margin-small-right" uk-icon="info"></span> Show Pipeline Elements</a>
+                        <div class="uk-accordion-content">
+                             {% if default_pipe.example_pipeline.neuro_dict | length > 0 %}
+                                <h4>Neuro Transformers</h4>
+                                {{render_element_table(default_pipe.example_pipeline.neuro_dict)}}
+                            {% endif %}
+                            <h4>Transformers</h4>
+                            {{render_element_table(default_pipe.example_pipeline.transformer_dict)}}
+                            <h4>Estimators</h4>
+                            {{render_element_table(default_pipe.example_pipeline.estimator_dict)}}
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+</div>
+{% endmacro %}

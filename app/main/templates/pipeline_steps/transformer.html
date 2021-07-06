@@ -1,0 +1,176 @@
+<!-- -*- mode: jinja2 -*- -->
+{% extends 'wizard_step_base.html' %}
+
+{% block stylesheets %}
+    <link href="/static/css/jquery.tag-editor.css" rel="stylesheet" media="screen">
+    <script src="/static/js/jquery.caret.min.js" type="text/javascript"></script>
+    <script src="/static/js/jquery.tag-editor.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var setTimer = true;
+        var stepName = '{{step_name}}';
+    </script>
+    <script src="static/js/wizard_clicks.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function delete_transformer(id)
+            {
+                $('#transformer-li-' + id).attr('hidden', true);
+                $('input.is_active_' + id).attr('value', false);
+                $('#transformer-li-' + id).find('.photon-selectable').each(function(idx){
+                                $(this).prop('checked', false).removeClass('checked');
+                            });
+                 setPostTimeout();
+            }
+
+        function show_transformer_items(id)
+            {
+                $(id).fadeIn(300)
+            }
+
+        $( document ).ready(function() {
+
+
+            // $("#photon_step_form").submit(function(e) {
+            //     e.preventDefault();
+            // });
+
+            var transformer_count = 0;
+
+            $("#sortable").sortable({
+                     start: function(event, ui) {
+                            // ui.item.bind("click.prevent",
+                            //     function(event) { event.preventDefault(); });
+                        },
+                    stop: function(event, ui) {
+                         // setTimeout(function(){ui.item.unbind("click.prevent");}, 100);
+                         $( event.originalEvent.target ).one('click', function(e){ e.stopImmediatePropagation(); } );
+                         // alert("New position: " + ui.item.index());
+                         var nbElems = 10;
+                        $('input.current_position').each(function(idx) {
+                            $(this).val(idx);
+                        });
+                    }
+            });
+            $("#sortable").disableSelection();
+
+
+
+            $('#new_transformer').click(function(){
+                // transformer_count += 1;
+                 $('li.li-transformer').each(function(idx){
+                        if ($(this).prop('hidden'))
+                        {
+                            var title = $(this).find('.uk-accordion-title');
+                            title.text(title.attr('original_name'));
+                            $(this).removeAttr('hidden');
+                            // alert($(this).attr('transformer_name'));
+                            show_transformer_items('.inputgroup_' + $(this).attr('transformer_name'));
+                            return false
+                        }
+                });
+
+            })
+        })
+    </script>
+
+{% endblock %}
+
+{% block step_title %}
+    <h2>Step 6</h2>
+    <h1>Transformers</h1>
+{% endblock %}
+
+{% block step_description %}
+    <div uk-grid>
+        <div class="uk-width-1-2">
+            <p class="uk-padding-remove">
+                You can now define a number of transformation steps. Importantly,
+                the hyperparameters of these <b>transformers</b> are optimized by PHOTON as well. You can also add and
+                delete as well as drag and drop the transformer elements to change their order.
+            </p>
+        </div>
+        <div class="uk-width-1-2">
+            <pre id="cheat-sheet">
+                <code class="python">
+# SYNTAX CHEAT SHEET
+IntegerRange(start=1, stop=10, step=2)
+FloatRange(start=0.01, stop=10, step=0.5,
+           range_type='logspace ODER linspace')
+                </code>
+            </pre>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block formular_content %}
+
+    {% from "general/select_box_macro.html" import render_selection_box %}
+    <div uk-grid>
+        <div class="uk-width-5-6">
+            <ul id="sortable" uk-accordion="multiple: true" class="uk-width-expand">
+
+                {% for item in selection_items %}
+
+                    {% set outer_loop_index = loop.index -1 %}
+                     <li class="uk-open li-transformer uk-box-shadow-medium uk-padding" transformer_name="{{item.fieldset_id}}" id="transformer-li-{{item.fieldset_id}}"
+                     {%if item.is_active=="false" %}
+                         hidden
+                     {% endif %} >
+                         <a class="uk-accordion-title transformer-li-{{loop.index - 1}}" original_name="Transformer {{loop.index}}" href="#">Transformer {{loop.index}}</a>
+                         <a class="uk-align-right transformer-icon" uk-icon="icon: trash" onclick="delete_transformer('{{item.fieldset_id}}')"></a>
+                         <a class="uk-align-right transformer-icon" uk-icon="icon: file-edit" onclick="show_transformer_items('.inputgroup_{{item.fieldset_id}}')"></a>
+                         <div class="uk-accordion-content">
+                            <div class="transformer-selection">
+                                 <fieldset id="{{item.fieldset_id}}" class="photon-fieldset">
+                                      <input id="{{item.fieldset_id}}_current_position"
+                                             class ="current_position"
+                                             name="position_{{item.fieldset_id}}"
+                                             type="hidden"
+                                             value="{{item.position}}"/>
+
+                                       <input id="{{item.fieldset_id}}_is_active"
+                                             class="is_active_{{item.fieldset_id}}"
+                                             name="{{item.fieldset_id}}_is_active"
+                                             type="hidden"
+                                             value="{{item.is_active}}"/>
+
+                                    {% for select_item in item.items %}
+                                        {% set loop_index = loop.index %}
+                                        {{ render_selection_box(item, select_item, '', loop_index)}}
+                                        <script type="text/javascript">
+                                            $("#{{item.fieldset_id}}_{{select_item.system_name}}").click(function(){
+
+                                                $('input.is_active_{{item.fieldset_id}}').attr('value', 'true');
+
+                                                $('a.transformer-li-{{outer_loop_index}}').text('{{select_item.name}}');
+
+                                                $(".inputgroup_{{item.fieldset_id}}").each(function(idx)
+                                                    {
+                                                        if ($(this).attr('id') !=  "inputgroup_{{item.fieldset_id}}_{{select_item.system_name}}")
+                                                        {
+                                                            // alert($(this).attr('id'));
+                                                            // $(this).animate({"display": "none"}, 300);
+                                                            // $(".inputgroup_{{item.fieldset_id}}_{{select_item.system_name}}").fadeOut(300)
+                                                            $(this).fadeOut(300);
+                                                        }}
+                                                );
+
+                                            })
+                                        </script>
+                                    {% endfor %}
+                                </fieldset>
+                             </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div>
+                <a class="uk-button uk-button-primary uk-clearfix uk-align-right" id="new_transformer">Add Transformer Element</a>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+

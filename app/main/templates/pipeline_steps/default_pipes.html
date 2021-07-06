@@ -1,0 +1,49 @@
+<!-- -*- mode: jinja2 -*- -->
+{% extends 'wizard_step_base.html' %}
+
+{% block stylesheets %}
+<script type="text/javascript">
+     $(document).ready(function(){
+                $("#photon_next_button").hide();
+            });
+ </script>
+{% endblock %}
+
+{% block step_title %}
+    <h2>Step 3</h2>
+    <h1>Choose Pipeline</h1>
+{% endblock %}
+
+{% block step_description %}
+ <div uk-grid>
+    <p class="uk-padding-remove">
+        Finally, you can choose between a variety of pre-crafted pipelines or a custom pipeline. BITCH!
+    </p>
+ </div>
+
+{% endblock %}
+
+{% block formular_content %}
+{% from "general/render_pipeline_element_table.html" import render_default_pipe_card %}
+
+<div class="default-pipelines">
+
+    <h3>Custom Pipeline</h3>
+    <a class="uk-button uk-button-primary uk-button-large" href="{{url_for('optimization')}}">
+        <img class="uk-border-circle" width="40" src="/static/img/wizard.png"  />
+        <span class="uk-margin-small-left">
+        Design your own custom pipeline </span></a>
+
+
+
+    {% for sub_heading, default_pipes in default_pipe_dict.items() %}
+        <h3>{{sub_heading}}</h3>
+<!--        <p>including Hyperparameter Optimization</p>-->
+        <div uk-grid class="uk-grid-small">
+            {% for default_pipe in default_pipes %}
+                {{ render_default_pipe_card(default_pipe, False)}}
+            {% endfor %}
+            </div>
+        {% endfor %}
+</div>
+{% endblock %}

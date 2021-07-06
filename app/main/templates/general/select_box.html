@@ -1,0 +1,20 @@
+{% from "general/select_box_macro.html" import render_selection_box %}
+
+
+    <fieldset id="{{item.fieldset_id}}" class="photon-fieldset">
+
+
+        <h3>{{item.title}}</h3>
+        <p>{{item.question}}</p>
+
+
+        {% for select_item in item.items %}
+            {% set loop_index = loop.index %}
+            {{ render_selection_box(item, select_item, '', loop_index)}}
+
+        {% endfor %}
+
+
+    </fieldset>
+
+

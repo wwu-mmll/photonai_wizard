@@ -1,0 +1,14 @@
+version: '2'
+services:
+  webapi:
+    image: webapi
+    restart: always
+    build:
+       context: .
+       dockerfile: dockerfile_web
+    network_mode: host
+    ports:
+      - "0.0.0.0:8004:80"
+    volumes:
+       - ./app:/app
+       - /YOUR/LOCAL/PATH:/spm-data/Scratch/photon_wizard/

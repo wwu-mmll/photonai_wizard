@@ -1,0 +1,25 @@
+<!-- -*- mode: jinja2 -*- -->
+{% extends 'wizard_step_base.html' %}
+
+{% block step_title %}
+    <h2>Step 4</h2>
+    <h1>Optimization Design</h1>
+{% endblock %}
+
+{% block step_description %}
+    <p>
+        Please specify the <b>hyperparameter optimizer</b> that PHOTON will use to find the best hyperparameters for your analysis.
+        The <b>nested cross-validation</b> of your analysis is one of the most crucial parts of a Machine Learning analysis. Luckily,
+        PHOTON will handle everything for you so that no validation mistakes can happen. Just specify an outer cross-validation
+        that is used to obtain an <b>unbiased performance</b> estimate of your complete analysis and an inner cross-validation
+        that is used to get a performance estimate for every hyperparameter configuration that PHOTON will test for you.
+
+    </p>
+{% endblock %}
+
+
+{% block formular_content %}
+        {% include 'general/render_selections.html' %}
+
+{% endblock %}
+
