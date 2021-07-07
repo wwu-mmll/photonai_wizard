@@ -1,5 +1,16 @@
 version: '2'
 services:
+  mongodb_container:
+    image: mongo:latest
+#    environment:
+#      MONGO_INITDB_ROOT_USERNAME: root
+#      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    ports:
+      - 0.0.0.0:27017:27017
+    volumes:
+      - mongodb_data_container:/data/db
+
+
   webapi:
     image: webapi
     restart: always
@@ -11,4 +22,9 @@ services:
       - "0.0.0.0:8004:80"
     volumes:
        - ./app:/app
-       - /YOUR/LOCAL/PATH:/spm-data/Scratch/photon_wizard/
+       - ./photon_wizard:/spm-data/Scratch/photon_wizard/
+    depends_on:
+      - mongodb_container
+
+volumes:
+  mongodb_data_container:

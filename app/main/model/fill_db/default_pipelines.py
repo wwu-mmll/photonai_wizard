@@ -22,7 +22,7 @@ def generate_default_pipeline_items():
                                            3: 'estimator_switch_feature_selection'}
     header_dict = {'Tabular Data':
                        {'Classification': ["Standard Classifier", "Classifier Selection",
-                                          "Feature Selection Classification", "Feature and Classifier Selection"],
+                                           "Feature Selection Classification", "Feature and Classifier Selection"],
                         'Regression': ["Standard Regressor", "Regressor Selection", "Feature Selection Regression",
                                        "Feature and Regressor Selection"]},
 
@@ -616,7 +616,7 @@ class DefaultPipelineRepo:
         return builder.pipeline
 
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
     # DefaultPipelineRepo.test_default_pipelines()
-    connect("mongodb://trap-umbriel:27017/photon-wizard2", connect=False, alias="photon_wizard")
-    generate_default_pipeline_items()
+    # connect("mongodb://trap-umbriel:27017/photon-wizard2", connect=False, alias="photon_wizard")
+    # generate_default_pipeline_items()

@@ -120,7 +120,8 @@ from photonai_neuro import NeuroBranch""")
                 imports_statement = "\n" + self._read_imports(self.pipe_infos.inner_cv).replace("\n", "")
                 if imports_statement not in cv_imports:
                     cv_imports += imports_statement
-            code.append(cv_imports)
+            code.append("""
+{}""".format(cv_imports.strip()))
 
             code.append("""
              """)
