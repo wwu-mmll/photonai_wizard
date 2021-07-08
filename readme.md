@@ -1,25 +1,37 @@
 # PHOTONAI WIZARD
 
-Towards Educational Machine Learning Code Generators
+This is a local installation of the PHOTONAI Wizard, an educational machine learning code generator for the Python package [PHOTONAI](www.photon-ai.com). A publicly available running version can be found at [wizard.photon-ai.com](wizard.photon-ai.com).
+
+The PHOTONAI Wizard guides you through a series of steps involved in the definition of a machine learning analysis, such as cross-validation, data preprocessing, algorithm selection or performance metrics.
 
 ## SETUP
 
-The following is a guide to setting up the wizard **locally**. 
+The installation of the PHOTONAI Wizard should be simple and straightforward. The only necessary requirement is a docker installation. Everything else will be handled within the docker container.
+
+
 
 Requirements:
 
+- Git
+
 * Docker
-* MongoDB
+
+  
 
 Steps:
 
-1. Setup a MongoDB instance. 
-2. Set up wizard
-> go to app/wizard-config.py. Define your specific MongoDB instance and other settings. Please follow the specific instructions
-> in the config file. Then, go To app/main.py and load your local config.
-3. Fill the MongoDB
-> go to app/model/db_fill/ - first start element_definition.py, than default_pipelines.py. In some cases the default_pipelines.py
-> throws an error. Please drop the hole photon_wizard database (only in your local MongoDB) and repeat Step 3.
-4. Build the PHOTONAI Wizard docker
-> go to the project root and run 'sudo docker-compose build' and 'sudo docker-compose up' from the terminal
-> the PHOTONAI Wizard should now be available in the web browser at 'localhost:7276' 
+1. in the terminal, clone the PHOTONAI Wizard repository into a folder of your choice using
+
+   `git clone https://github.com/wwu-mmll/photonai_wizard.git`
+
+2.   cd into the repository and run 
+
+   `sudo docker-compose build`
+
+   `sudo docker-compose up`
+
+3. go to the following page in your web browser
+
+   `localhost:80`
+
+   the wizard should now be ready to use
