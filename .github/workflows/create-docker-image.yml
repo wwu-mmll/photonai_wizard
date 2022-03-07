@@ -1,0 +1,18 @@
+name: Create PHOTONAI wizard Docker image
+on:
+  release:
+    types: [released]
+
+jobs:
+  build_and_publish:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v3
+    - uses: mr-smithers-excellent/docker-build-push@v5
+      name: docker build and push
+      with:
+        addLatest: True
+        image: photonai-wizard
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
