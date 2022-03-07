@@ -4,7 +4,7 @@ class PHOTONWebConfig(object):
     SECRET_KEY = 'do-i-really-need-this'
     # THE MONGODB THAT THE WIZARD ELEMENTS ARE STORED IN, NOT PHOTONAI RESULTS
     # specify your mongodb instance here
-    MONGODB_CS = 'mongodb://localhost:27017'
+    MONGODB_CS = 'mongodb://mongo:27017'
     LOGIN_DISABLED = True
 
     # specify a folder where the PHOTONAI script can be written to

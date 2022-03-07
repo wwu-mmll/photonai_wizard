@@ -1,12 +1,9 @@
 version: '2'
 services:
-  mongodb_container:
+  mongo:
     image: mongo:latest
-#    environment:
-#      MONGO_INITDB_ROOT_USERNAME: root
-#      MONGO_INITDB_ROOT_PASSWORD: rootpassword
     ports:
-      - 0.0.0.0:27017:27017
+      - 127.0.0.1:27017:27017
     volumes:
       - mongodb_data_container:/data/db
 
@@ -16,15 +13,11 @@ services:
     restart: always
     build:
        context: .
-       dockerfile: dockerfile_web
-    network_mode: host
+       dockerfile: Dockerfile
     ports:
-      - "0.0.0.0:8004:80"
-    volumes:
-       - ./app:/app
-       - ./photon_wizard:/spm-data/Scratch/photon_wizard/
+      - "127.0.0.1:8081:8080"
     depends_on:
-      - mongodb_container
+      - mongo
 
 volumes:
   mongodb_data_container:

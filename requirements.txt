@@ -17,8 +17,7 @@ numpy
 scikit-learn
 matplotlib
 requests
-git+https://github.com/wwu-mmll/photonai@develop
+photonai
 git+https://github.com/wwu-mmll/photonai_neuro
 openpyxl
 plotly
-
