@@ -8,24 +8,23 @@
     <title>PHOTONAI WIZARD</title>
 
 <!--    <link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">-->
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/font_notosans.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/uikit.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/progress_bar.css') }}">
-    <link href="static/css/prism.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/prism.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/photon_wizard.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/tooltipster.bundle.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-shadow.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery-ui.min.css') }}">
 
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
-    <script src="https://code.jquery.com/jquery-latest.js"></script>
-    <script src="/static/js/uikit.min.js"></script>
-    <script src="/static/js/uikit-icons.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="/static/js/uikit-icons.min.js"></script>
-    <script src="/static/js/jquery.validate.min.js"></script>
-    <script src="/static/js/tooltipster.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/jquery-latest.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/uikit.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/uikit-icons.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery-ui.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.validate.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tooltipster.bundle.min.js') }}"></script>
 
 
  <!-- Python Syntax Highlighting -->
@@ -34,10 +33,10 @@
 <!--    <script>hljs.initHighlightingOnLoad();</script>-->
 
 
-    <script src="static/js/prism.js" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/prism.js') }}" type="text/javascript"></script>
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cookieconsent.min.css') }}">
+    <script src="{{ url_for('static', filename='js/cookieconsent.min.js') }}"></script>
 
 
     <script>
@@ -201,7 +200,7 @@
         <footer class="main-footer">
             <div class="uk-container">
                 <div>
-                    <strong>Version 0.1 | Copyright &copy; 2019 - 2021 <a href="http://www.photon-ai.com/">PHOTON</a>.</strong> All rights
+                    <strong>Version 0.1 | Copyright &copy; 2019 - 2022 <a href="http://www.photon-ai.com/">PHOTON</a>.</strong> All rights
                 reserved.
                 </div>
             </div>
